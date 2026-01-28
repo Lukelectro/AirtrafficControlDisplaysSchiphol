@@ -5,8 +5,11 @@ OBJS           = display.o pd44.o schiphol50228.o serial.o
 MCU_TARGET     = atmega161
 OPTIMIZE       = -O3
 
-AVRDUDE        = /Applications/Arduino.app/Contents/Java/hardware/tools/avr/bin/avrdude
-AVRDUDECONF    = /Applications/Arduino.app/Contents/Java/hardware/tools/avr/etc/avrdude.conf
+#AVRDUDE        = /Applications/Arduino.app/Contents/Java/hardware/tools/avr/bin/avrdude
+#AVRDUDECONF    = /Applications/Arduino.app/Contents/Java/hardware/tools/avr/etc/avrdude.conf
+
+AVRDUDE        = avrdude
+AVRDUDECONF    = ~/avrdude.conf
 
 DEFS           =
 LIBS           =
@@ -26,7 +29,8 @@ download: flash
 flash: $(PRG).hex
 	# uisp -dprog avrisp -dpart ATmega161 $<
 	# $(AVRDUDE) -C $(AVRDUDECONF) -c avrisp2 -p m8 -v -v -U flash:w:$<:i
-	$(AVRDUDE) -C $(AVRDUDECONF) -c avrispmkII -p m161 -U flash:w:$<:i
+	# $(AVRDUDE) -C $(AVRDUDECONF) -c avrispmkII -p m161 -U flash:w:$<:i
+    $(AVRDUDE) -C $(AVRDUDECONF) -c dragon_isp -p m161 -U flash:w:$<:i
 
 pd44.o:  ../shared/pd44.c
 	${CC} ${CFLAGS} -c $<

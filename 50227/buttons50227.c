@@ -133,7 +133,7 @@ check_specials:
 const char * butt_scan2label(unsigned char at) 
 {
 	static const char *_labels[KEY_ROWS][KEY_COLS] = {
-		{ "18R", "18L", "09", i "HELI", },
+		{ "18R", "18L", "09", "HELI", },
 	        { "L1",  "36L", "36R", "27",    },
 		{ "R2",  "R1",  "18C", "24",    },
 		{ "04",  "R3",  "L2",  "36C"    },
